@@ -124,3 +124,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "caleta_test/static"),
 )
+
+LOGIN_REDIRECT_URL = 'http://127.0.0.1:8000/billing'
+LOGOUT_REDIRECT_URL = 'home'
