@@ -1,0 +1,11 @@
+{% extends 'billing/index.html' %}
+
+{% block content %}
+	<h2>Game Delete</h2>
+	<form method="post" enctype="multipart/form-data">
+		{% csrf_token %}
+		<p>Are you sure you want to delete "{{ game.name }}" ?</p>
+		<p><img src="/media/{{ game.icon }}" height="60" width="60"></p>
+		<input type="submit" value="Delete" />
+	</form>
+{% endblock %}

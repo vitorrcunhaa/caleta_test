@@ -7,10 +7,10 @@ from billing import views
 
 
 urlpatterns = [
-    path('accounts/', include('django.contrib.auth.urls')),
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
-    path('register/', views.register, name='register'),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
+    path('register/', views.register, name='register'),
     path('billing/', include('billing.urls'), name='billing'),
     path('api/games_list', views.api_games_list, name='games_list'),
 ]

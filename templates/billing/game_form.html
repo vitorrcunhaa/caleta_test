@@ -1,0 +1,10 @@
+{% extends 'billing/index.html' %}
+
+{% block content %}
+	<h3>Game Edit</h3>
+	<form method="post" enctype="multipart/form-data">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<input type="submit" value="Edit"/>
+	</form>
+{% endblock %}

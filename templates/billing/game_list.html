@@ -1,0 +1,28 @@
+{% extends 'billing/index.html' %}
+
+{% block content %}
+	<h2>Games List</h2>
+	<p><button class="btn btn-default" style="border-color: #1b1e21"><a href="game_new">Add new game</a></button></p>
+
+	<table border="1">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Icon</th>
+				<th>Edit</th>
+				<th>Delete</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for game in object_list %}
+			<tr>
+				<td>{{ game.name }}</td>
+				<td><img src="/media/{{ game.icon }}" height="60" width="60"></td>
+				<td><a href="game_edit/{{ game.id }}">edit</a></td>
+				<td><a href="game_delete/{{ game.id }}">delete</a></td>
+			</tr>
+			{% endfor %}
+		</tbody>
+</table>
+
+{% endblock %}
