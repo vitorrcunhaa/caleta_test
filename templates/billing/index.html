@@ -23,7 +23,7 @@
     {% if user.is_authenticated %}
         <body id="page-top">
             <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
-                <a class="navbar-brand mr-1" href="index.html">Caleta Billing Report</a>
+                <a class="navbar-brand mr-1" href="#">Caleta Billing Report</a>
                     <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
                         <i class="fas fa-bars"></i>
                     </button>
@@ -31,18 +31,47 @@
             <div id="wrapper">
                 <!-- Sidebar -->
                 <ul class="sidebar navbar-nav">
-                    <li class="nav-item active"><a class="nav-link" href="">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
                         <span>Navigation</span>
-                    </a>
+                      </a>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Game Manager</span>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'logout' %}">
                         <i class="fas fa-fw fa-sign-out-alt"></i>
-                        <span>Logout</span></a>
+                        <span>Logout</span>
+                      </a>
                     </li>
                 </ul>
                 <div id="content-wrapper">
                     <div class="container-fluid">
+					<div class="container" style="background-color: #edf0ef">
+						<div class="row">
+                                {% if games %}
+                                    <div class="col-md-12">
+                                       <h4>Games List</h4>
+                                    </div>
+                                    {% for name, url in games.items %}
+                                        <div class="col-xl-3 col-sm-6 mb-3" align="center">
+                                            <p>{{ name }}</p>
+                                            <img src="{{ url }}" height="60" width="60">
+                                        </div>
+                                            <div class="col-xl-3 col-sm-6 mb-3" align="center">
+                                                <p>{{ name }}</p>
+                                                <img src="{{ url }}" height="60" width="60">
+                                            </div>
+                                    {% endfor %}
+                                {% endif %}
+                        </div>
+					</div>
+
                     </div>
                     <!-- Sticky Footer -->
                     <footer class="sticky-footer">
