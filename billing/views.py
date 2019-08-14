@@ -51,6 +51,10 @@ def api_games_list(request):
 class GameList(ListView):
     model = Game
 
+    def get_queryset(self):
+        game = Game.objects.filter(owner=self.request.user)
+        return game
+
 
 class GameCreate(CreateView):
     model = Game
