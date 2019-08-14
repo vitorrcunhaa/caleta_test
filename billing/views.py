@@ -11,21 +11,18 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 
 def index(request):
-    if request.user.is_authenticated:
-        games_queryset = Game.objects.filter(owner=request.user).all()
-        games_dict = {}
-        cash_queryset = Cash.objects.filter(owner=request.user).all()
-        cash_dict = {}
-        if games_queryset:
-            for game in games_queryset:
-                games_dict[game.name] = game.icon.url
-        if cash_queryset:
-            for cash in cash_queryset:
-                cash_dict[cash.field] = cash.value
+    games_queryset = Game.objects.filter(owner=request.user).all()
+    games_dict = {}
+    cash_queryset = Cash.objects.filter(owner=request.user).all()
+    cash_dict = {}
+    if games_queryset:
+        for game in games_queryset:
+            games_dict[game.name] = game.icon.url
+    if cash_queryset:
+        for cash in cash_queryset:
+            cash_dict[cash.field] = cash.value
 
-        return render(request, 'billing/index.html', {'games': games_dict, 'cashes': cash_dict})
-    else:
-        return HttpResponse('<h3>Forbidden.</h3> You cannot access this URL without logging in. <br> <a href="/accounts/login">Login</a>')
+    return render(request, 'billing/index.html', {'games': games_dict, 'cashes': cash_dict})
 
 
 def register(request):
