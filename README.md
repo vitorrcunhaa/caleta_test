@@ -26,7 +26,6 @@ pip install -r requirements.txt
 Run the Django migrations to set up your models:
 ```
 python manage.py makemigrations
-python manage.py makemigrations polls
 python manage.py migrate
 ```
 Start a local web server:
