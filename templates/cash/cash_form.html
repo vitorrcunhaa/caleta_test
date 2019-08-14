@@ -2,10 +2,9 @@
 
 {% block content %}
 	{% if is_create %}
-		<h3>Add a new Game</h3>
+		<h3>Add a new type of cash and value</h3>
 	{% else %}
-		<h3>Edit Game {{ game.name }}</h3>
-		<p><img src="/media/{{ game.icon }}" height="60" width="60"></p>
+		<h3>Edit Cash {{ cash.field }}</h3>
 	{% endif %}
 	<form method="post" enctype="multipart/form-data">
 		{% csrf_token %}

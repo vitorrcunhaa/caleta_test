@@ -1,0 +1,31 @@
+{% extends 'billing/index.html' %}
+
+{% block content %}
+	<h2>Cash List</h2>
+	<p><button class="btn btn-default" style="border-color: #1b1e21"><a href="cash_new">Add cash</a></button></p>
+
+	<div class="row">
+		<div class="col-sm-12">
+			<table class="table table-bordered" width="100%" cellspacing="0" role="grid">
+				<thead>
+					<tr role="row">
+						<th>Field</th>
+						<th>Value</th>
+						<th>Edit</th>
+						<th>Delete</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for cash in object_list %}
+					<tr role="row">
+						<td style="vertical-align: middle">{{ cash.field }}</td>
+						<td style="vertical-align: middle"><span id="value-to-dollar">{{ cash.value }}</span></td>
+						<td style="vertical-align: middle"><a href="cash_edit/{{ cash.id }}">Edit</a></td>
+						<td style="vertical-align: middle"><a href="cash_delete/{{ cash.id }}">Delete</a></td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock %}

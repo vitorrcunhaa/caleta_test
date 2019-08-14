@@ -12,7 +12,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/', views.register, name='register'),
     path('billing/', include('billing.urls'), name='billing'),
-    path('api/games_list', views.api_games_list, name='games_list'),
+    path('cash/', include('cash.urls'), name='cash'),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -19,6 +19,8 @@
             <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
             <!-- Custom scripts for all pages-->
             <script src="{% static 'js/sb-admin.min.js' %}"></script>
+			<!-- Currency handle and sidebar fix-->
+			<script src="{% static 'js/index_helper.js' %}"></script>
     </head>
     {% if user.is_authenticated %}
         <body id="page-top">
@@ -43,6 +45,12 @@
                         <span>Games Manager</span>
                       </a>
                     </li>
+					<li class="nav-item active">
+                      <a class="nav-link" href="{% url 'cash_list' %}">
+                        <i class="fas fa-fw fa-money-bill"></i>
+                        <span>Cash Manager</span>
+                      </a>
+                    </li>
                     <li class="nav-item">
                       <a class="nav-link" href="{% url 'logout' %}">
                         <i class="fas fa-fw fa-sign-out-alt"></i>
@@ -53,26 +61,38 @@
                 <div id="content-wrapper">
                     <div class="container-fluid">
 						{% block content %}
+						{% if games %}
 						<div class="container" style="background-color: #edf0ef">
 							<div class="row">
-									{% if games %}
-										<div class="col-md-12">
-										   <h4>Games</h4>
-										</div>
-										{% for name, url in games.items %}
-											<div class="col-xl-3 col-sm-6 mb-3" align="center">
-												<p>{{ name }}</p>
-												<img src="{{ url }}" height="60" width="60">
-											</div>
-										{% endfor %}
-									{% endif %}
+								<div class="col-md-12">
+								   <h4>Games</h4>
+								</div>
+								{% for name, url in games.items %}
+									<div class="col-xl-3 col-sm-6 mb-3" align="center">
+										<p>{{ name }}</p>
+										<img src="{{ url }}" height="60" width="60">
+									</div>
+								{% endfor %}
 							</div>
 						</div>
+						<hr />
+						{% endif %}
+						{% if cashes %}
+						<div class="container" style="background-color: antiquewhite">
+							<div class="row">
+								<div class="col-md-12">
+								   <h4>Cash in</h4>
+								{% for field, value in cashes.items %}
+									<div class="col-xl-3 col-sm-6 mb-3" align="center">
+										<p>{{ field }}: <span id="value-to-dollar">{{ value }}</span></p>
+									</div>
+								{% endfor %}
+								</div>
+							</div>
+						</div>
+						{% endif %}
 						{% endblock %}
                     </div>
-                    <!-- Sticky Footer -->
-                    <footer class="sticky-footer">
-                    </footer>
                 </div>
                 <!-- /.content-wrapper -->
             </div>
@@ -81,15 +101,6 @@
             <a class="scroll-to-top rounded" href="#page-top">
                 <i class="fas fa-angle-up"></i>
             </a>
-            <script>
-                $(function () {
-                    $("#sidebarToggle").click(function (e) {
-                        e.preventDefault();
-                        $("body").toggleClass("sidebar-toggled");
-                        $(".sidebar").toggleClass("toggled");
-                    })
-                });
-            </script>
         </body>
     {% else %}
       <p>You are not logged in.</p>

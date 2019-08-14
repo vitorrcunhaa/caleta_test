@@ -1,0 +1,10 @@
+{% extends 'billing/index.html' %}
+
+{% block content %}
+	<h2>Cash Delete</h2>
+	<form method="post" enctype="multipart/form-data">
+		{% csrf_token %}
+		<p>Are you sure you want to delete "{{ cash.field }}" with <span id="value-to-dollar">{{ cash.value }}</span> ?</p>
+		<input type="submit" value="Delete" />
+	</form>
+{% endblock %}

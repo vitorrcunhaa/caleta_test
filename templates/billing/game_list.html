@@ -4,25 +4,29 @@
 	<h2>Games List</h2>
 	<p><button class="btn btn-default" style="border-color: #1b1e21"><a href="game_new">Add new game</a></button></p>
 
-	<table border="1">
-		<thead>
-			<tr>
-				<th>Name</th>
-				<th>Icon</th>
-				<th>Edit</th>
-				<th>Delete</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for game in object_list %}
-			<tr>
-				<td>{{ game.name }}</td>
-				<td><img src="/media/{{ game.icon }}" height="60" width="60"></td>
-				<td><a href="game_edit/{{ game.id }}">edit</a></td>
-				<td><a href="game_delete/{{ game.id }}">delete</a></td>
-			</tr>
-			{% endfor %}
-		</tbody>
-</table>
+	<div class="row">
+		<div class="col-sm-12">
+			<table class="table table-bordered" width="100%" cellspacing="0" role="grid">
+				<thead>
+					<tr role="row">
+						<th>Name</th>
+						<th>Icon</th>
+						<th>Edit</th>
+						<th>Delete</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for game in object_list %}
+					<tr role="row">
+						<td style="vertical-align: middle">{{ game.name }}</td>
+						<td><img src="/media/{{ game.icon }}" height="60" width="60"></td>
+						<td style="vertical-align: middle"><a href="game_edit/{{ game.id }}">Edit</a></td>
+						<td style="vertical-align: middle"><a href="game_delete/{{ game.id }}">Delete</a></td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
 
 {% endblock %}
